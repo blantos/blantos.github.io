@@ -60,7 +60,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1a2a4e 0%, #2d4a7a 50%, #3d5a9a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -68,6 +68,25 @@
             color: white;
             position: relative;
             padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 2px, transparent 2px),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.02) 3px, transparent 3px),
+                radial-gradient(circle at 60% 70%, rgba(255,255,255,0.025) 2.5px, transparent 2.5px),
+                radial-gradient(circle at 30% 80%, rgba(255,255,255,0.02) 2px, transparent 2px),
+                radial-gradient(circle at 90% 60%, rgba(255,255,255,0.03) 3px, transparent 3px),
+                radial-gradient(circle at 10% 90%, rgba(255,255,255,0.025) 2.5px, transparent 2.5px);
+            background-size: 200px 200px, 300px 300px, 250px 250px, 180px 180px, 220px 220px, 280px 280px;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -91,18 +110,32 @@
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 300;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
+            letter-spacing: 1px;
         }
 
         .hero .subtitle {
             font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             font-weight: 400;
             opacity: 0.9;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .hero .subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 1px;
+            background: rgba(255,255,255,0.4);
         }
 
         .cta-button {
@@ -333,11 +366,6 @@
                 padding: 40px 30px;
             }
             
-            .approach-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
             .about-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -436,7 +464,7 @@
                 <h2>Get In Touch</h2>
                 <p class="contact-subtitle">Ready for expert advice? Let's discuss how we can help.</p>
                 
-                <form class="contact-form" action="#" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/xblkdnwz" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -472,15 +500,20 @@
             });
         });
 
-        // Form submission handling
+        // Form submission handling for Formspree
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
+            // Let the form submit naturally to Formspree
+            // Show a temporary message while submitting
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
             
-            // You'll need to replace this with your actual form handling
-            alert('Thank you for reaching out! We\'ll get back to you shortly.');
-            
-            // Reset form
-            this.reset();
+            // Re-enable button after a delay (in case of errors)
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 5000);
         });
 
         // Header scroll effect
