@@ -3,23 +3,551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Site Title</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Radius Partners | Strategic Advisory for Founders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-header svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 40px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .about-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: white;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Partnership Approach Section */
+        .approach {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .approach-text h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        .approach-text p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .approach-image {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.1), rgba(42, 82, 152, 0.1));
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 60px;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.05);
+            padding: 60px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 16px 50px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .contact-form {
+                padding: 40px 30px;
+            }
+            
+            .approach-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Your Name/Business</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-header">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="#2c3e50" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="#2c3e50" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="#2c3e50" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="30" fill="none" stroke="#2c3e50" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="10" fill="#2c3e50"/>
+                </svg>
+                <span class="logo-text">RADIUS PARTNERS</span>
+            </div>
+        </div>
     </header>
-    
-    <main>
-        <img src="radius_partners_logo.jpg" alt="Description">
-        
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" placeholder="Message" required></textarea>
-            <button type="submit">Get in Touch</button>
-        </form>
-    </main>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="white" stroke-width="6"/>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="white" stroke-width="6"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="white" stroke-width="6"/>
+                    <circle cx="100" cy="100" r="30" fill="none" stroke="white" stroke-width="6"/>
+                    <circle cx="100" cy="100" r="10" fill="white"/>
+                </svg>
+            </div>
+            <h1>Strategic Advisory for Founders</h1>
+            <p class="subtitle">Empowering entrepreneurs with leverage, clarity, and strategic support to scale their vision and drive sustainable growth</p>
+            <a href="#contact" class="cta-button">Partner with Us</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What We Do</h2>
+                <p class="section-subtitle">Radius Partners is a founder-led advisory firm dedicated to empowering entrepreneurs with the strategic support they need to succeed. We understand the unique challenges founders face because we've been there ourselves.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L13.09 8.26L19 7L18.22 13.58L24 15L17.74 17.5L19 23L12 21L5 23L6.26 17.5L0 15L5.78 13.58L5 7L10.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Leverage</h3>
+                    <p class="card-description">Amplify your efforts and resources through strategic partnerships, operational efficiency, and proven frameworks that accelerate growth while minimizing risk.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5S21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.24 17 7 14.76 7 12S9.24 7 12 7S17 9.24 17 12S14.76 17 12 17ZM12 9C10.34 9 9 10.34 9 12S10.34 15 12 15S15 13.66 15 12S13.66 9 12 9Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Clarity</h3>
+                    <p class="card-description">Cut through complexity and focus on what matters most. We help you identify priorities, eliminate distractions, and make decisions with confidence.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM18 21H9V7H18V21Z"/>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Strategic Support</h3>
+                    <p class="card-description">Navigate critical decisions with experienced guidance. From scaling operations to raising capital, we partner with you every step of the way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Approach Section -->
+    <section class="approach" id="approach">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Partnership Approach</h2>
+                <p class="section-subtitle">We empower leaders to advance their businesses through customized solutions and collaborative partnership</p>
+            </div>
+            
+            <div class="approach-content">
+                <div class="approach-text">
+                    <h3>Built by Founders, for Founders</h3>
+                    <p>As founder-owners ourselves, we understand the determination and vision required to build and scale a successful business. Our approach is deeply rooted in real-world experience.</p>
+                    <p>We customize our solutions and style to support the specific needs of each business and team, whether you're scaling operations, raising capital, or preparing for your next growth phase.</p>
+                    <p>Our team is aligned with your success, offering ongoing strategic guidance, resources, and support to help you reach your full potential and turn vision into reality.</p>
+                </div>
+                <div class="approach-image">
+                    <!-- Visual element representing partnership/collaboration -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Get In Touch</h2>
+                <p class="contact-subtitle">Ready to accelerate your growth? Let's discuss how we can help.</p>
+                
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your company and what you're looking to achieve..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // You'll need to replace this with your actual form handling
+            alert('Thank you for reaching out! We\'ll get back to you within 24 hours.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
