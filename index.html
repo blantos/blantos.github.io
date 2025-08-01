@@ -383,7 +383,104 @@
         html {
             scroll-behavior: smooth;
         }
-    </style>
+        /* Footer */
+.footer {
+    background: #1a252f;
+    color: #b8c5d1;
+    padding: 60px 0 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+}
+
+.footer-brand {
+    max-width: 400px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.footer-logo svg {
+    width: 30px;
+    height: 30px;
+}
+
+.footer-logo-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.footer-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    color: #b8c5d1;
+}
+
+.footer-email {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-email:hover {
+    color: #667eea;
+}
+
+.footer-section h4 {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #b8c5d1;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #8596a8;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+}    </style>
 </head>
 <body>
     <!-- Header -->
@@ -533,5 +630,52 @@
             }
         });
     </script>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="white" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="white" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="50" fill="none" stroke="white" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="30" fill="none" stroke="white" stroke-width="8"/>
+                    <circle cx="100" cy="100" r="10" fill="white"/>
+                </svg>
+                <span class="footer-logo-text">RADIUS PARTNERS</span>
+            </div>
+            <p class="footer-description">
+                Strategic advisory for founders and CEOs. We provide leverage, clarity, and strategic support to scale your vision and drive sustainable growth.
+            </p>
+            <a href="mailto:hello@radius-strategy.com" class="footer-email">
+                hello@radius-strategy.com
+            </a>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Services</h4>
+            <ul class="footer-links">
+                <li>Company Strategy</li>
+                <li>Growth Planning</li>
+                <li>Go-to-Market</li>
+                <li>Capital Strategy</li>
+                <li>Executive Recruiting</li>
+                <li>Founder Coaching</li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h4>Connect</h4>
+            <ul class="footer-links">
+                <li><a href="https://www.linkedin.com/company/radiuspartners/" target="_blank">LinkedIn</a></li>
+                <li><a href="mailto:hello@radius-strategy.com">Email Us</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 Radius Partners. All rights reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
